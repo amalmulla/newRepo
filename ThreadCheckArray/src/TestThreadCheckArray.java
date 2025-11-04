@@ -19,6 +19,9 @@ public class TestThreadCheckArray {
 			
 			thread1 = new Thread(new ThreadCheckArray(sd), "thread1");
 			thread2 = new Thread(new ThreadCheckArray(sd), "thread2");
+			
+			long start = System.nanoTime(), finish, timeElapsed;
+
 			thread1.start();
 			thread2.start();
 			try 
@@ -33,8 +36,16 @@ public class TestThreadCheckArray {
 			if (!sd.getFlag())
 			{
 				System.out.println("Sorry");
+				finish = System.nanoTime();
+				timeElapsed = finish - start;
+				// System.out.println("Time elapsed: " + timeElapsed / 1000000.0 + "ms");
 				return;
 			}
+			
+			finish = System.nanoTime();
+			timeElapsed = finish - start;
+			// System.out.println("Time elapsed: " + timeElapsed / 1000000.0 + "ms");
+			
 			System.out.println("Solution for b : " + sd.getB() + ",n = " + sd.getArray().length);
 			System.out.print("I:    ");
 			for(int index = 0; index < sd.getArray().length ; index++)
